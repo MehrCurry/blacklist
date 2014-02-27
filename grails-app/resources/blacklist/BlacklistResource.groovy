@@ -13,24 +13,24 @@ import org.grails.jaxrs.provider.DomainObjectNotFoundException
 
 @Consumes(['application/xml', 'application/json'])
 @Produces(['application/xml', 'application/json'])
-class IbanBlacklistEntryResource {
+class BlacklistResource {
 
-    def ibanBlacklistEntryResourceService
+    def blacklistResourceService
     def id
 
     @GET
     Response read() {
-        ok ibanBlacklistEntryResourceService.read(id)
+        ok blacklistResourceService.read(id)
     }
 
     @PUT
-    Response update(IbanBlacklistEntry dto) {
+    Response update(Blacklist dto) {
         dto.id = id
-        ok ibanBlacklistEntryResourceService.update(dto)
+        ok blacklistResourceService.update(dto)
     }
 
     @DELETE
     void delete() {
-        ibanBlacklistEntryResourceService.delete(id)
+        blacklistResourceService.delete(id)
     }
 }
