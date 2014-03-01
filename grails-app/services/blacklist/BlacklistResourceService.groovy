@@ -37,20 +37,18 @@ class BlacklistResourceService {
     }
 
     def checkIban(mid,value) {
-        def ibans=Iban.withCriteria {
+        Iban.withCriteria {
             blacklist {
                 eq("mid",mid)
             }
-        }
-        ibans.findAll {it.matches(value)}
+        }.findAll {it.matches(value)}.isEmpty() ? "BLOCKED" : "OK"
     }
 
     def checkEmail(mid,value) {
-        def emails=Email.withCriteria {
+        Email.withCriteria {
             blacklist {
                 eq("mid",mid)
             }
-        }
-        emails.findAll {it.matches(value)}
+        }.findAll {it.matches(value)}.isEmpty() ? "BLOCKED" : "OK"
     }
 }

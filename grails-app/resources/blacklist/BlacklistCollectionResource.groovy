@@ -32,12 +32,14 @@ class BlacklistCollectionResource {
 
     @GET
     @Path('/{id}/iban/{value}')
+    @Produces(['text/plain'])
     Response checkIban(@PathParam('id') Long id,@PathParam('value') String value) {
         ok blacklistResourceService.checkIban(id,value)
     }
 
     @GET
     @Path('/{id}/email/{value}')
+    @Produces(['text/plain'])
     Responses checkEmail(@PathParam('id') Long id,@PathParam('value') String value) {
         ok blacklistResourceService.checkEmail(id,value)
     }
