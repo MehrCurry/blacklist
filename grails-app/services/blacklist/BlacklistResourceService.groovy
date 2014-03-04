@@ -51,4 +51,12 @@ class BlacklistResourceService {
             }
         }.findAll {it.matches(value)}.isEmpty() ? "BLOCKED" : "OK"
     }
+
+    def checkBban(mid,value) {
+        Bban.withCriteria {
+            blacklist {
+                eq("mid",mid)
+            }
+        }.findAll {it.matches(value)}.isEmpty() ? "BLOCKED" : "OK"
+    }
 }

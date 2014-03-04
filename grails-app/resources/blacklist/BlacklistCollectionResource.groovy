@@ -1,4 +1,6 @@
 package blacklist
+
+import org.apache.shiro.authz.annotation.RequiresRoles
 import org.grails.jaxrs.response.Responses
 
 import javax.ws.rs.*
@@ -10,6 +12,7 @@ import static org.grails.jaxrs.response.Responses.ok
 @Path('/api/blacklist')
 @Consumes(['application/xml', 'application/json'])
 @Produces(['application/xml', 'application/json'])
+@RequiresRoles('ROLE_USER')
 class BlacklistCollectionResource {
 
     def blacklistResourceService
@@ -42,6 +45,13 @@ class BlacklistCollectionResource {
     @Produces(['text/plain'])
     Responses checkEmail(@PathParam('id') Long id,@PathParam('value') String value) {
         ok blacklistResourceService.checkEmail(id,value)
+    }
+
+    @GET
+    @Path('/{id}/bban/{value}')
+    @Produces(['text/plain'])
+    Responses checkBban(@PathParam('id') Long id,@PathParam('value') String value) {
+        ok blacklistResourceService.checkBban(id,value)
     }
 
 }

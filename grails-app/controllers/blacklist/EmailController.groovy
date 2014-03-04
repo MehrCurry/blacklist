@@ -1,7 +1,9 @@
 package blacklist
 
 import grails.transaction.Transactional
+import org.apache.shiro.authz.annotation.RequiresRoles
 
+@RequiresRoles('ROLE_ADMIN')
 class EmailController {
     static scaffold = true
 

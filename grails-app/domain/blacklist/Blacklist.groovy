@@ -4,7 +4,7 @@ class Blacklist {
     Long mid
     String memo
 
-    static hasMany = [ibanBlacklist:Iban,emailBlacklist:Email]
+    static hasMany = [ibans:Iban,emails:Email,bbans:Bban]
 
     static constraints = {
     }
